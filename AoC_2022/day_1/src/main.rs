@@ -1,6 +1,12 @@
-/*
+fn main() {
+    let result1 = method_1().unwrap();
+    let result2 = method_2().unwrap();
+
+    assert_eq!(result1, result2);
+}
+
 // Method 1:
-fn main() -> Result<(), std::io::Error> {
+fn method_1() -> Result<u64, std::io::Error> {
     // Reading contents from input file
     let input_str = std::fs::read_to_string("src/input.txt")?;
 
@@ -23,13 +29,12 @@ fn main() -> Result<(), std::io::Error> {
         }
     }
 
-    println!("Sum : {max}");
-    Ok(())
+    println!("Result by method 1 = {max}");
+    Ok(max)
 }
-*/
 
 // Mathod 2:
-fn main() -> Result<(), std::io::Error> {
+fn method_2() -> Result<u64, std::io::Error> {
     // Reading lines from input.txt in Vector
     let lines = include_str!("input.txt")
         .lines()
@@ -44,6 +49,7 @@ fn main() -> Result<(), std::io::Error> {
 
     // Find max element from group_of_elf_sum by iterating
     let result = group_of_elf_sum.into_iter().max();
-    println!("Max = {:?}", result.unwrap());
-    Ok(())
+    println!("Result by method 2 = {}", result.unwrap());
+
+    Ok(result.unwrap())
 }
