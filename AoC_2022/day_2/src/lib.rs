@@ -1,0 +1,105 @@
+use std::{cmp::Ordering, str::FromStr};
+
+// Enum for determining move
+#[derive(Debug, PartialEq)]
+enum Move {
+    Rock,
+    Paper,
+    Scissors,
+}
+
+impl Move {
+    // To determine score of particular move
+    fn score(&self) -> u32 {
+        match self {
+            Move::Rock => 1,
+            Move::Paper => 2,
+            Move::Scissors => 3,
+        }
+    }
+}
+
+// To compare every move combination
+impl PartialOrd for Move {
+    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+        match (self, other) {
+            (&Move::Rock, &Move::Scissors) => Some(Ordering::Greater),
+            (&Move::Scissors, &Move::Rock) => Some(Ordering::Less),
+            (&Move::Paper, &Move::Rock) => Some(Ordering::Greater),
+            (&Move::Rock, &Move::Paper) => Some(Ordering::Less),
+            (&Move::Scissors, &Move::Paper) => Some(Ordering::Greater),
+            (&Move::Paper, &Move::Scissors) => Some(Ordering::Less),
+            _ => Some(Ordering::Equal),
+        }
+    }
+}
+
+// To parse &str move -> Move enum
+impl FromStr for Move {
+    type Err = String;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        match s {
+            "A" | "X" => Ok(Move::Rock),
+            "B" | "Y" => Ok(Move::Paper),
+            "C" | "Z" => Ok(Move::Scissors),
+            _ => Err("Not a known move".to_string()),
+        }
+    }
+}
+
+// Func to solve part_1
+pub fn solve_part1(input: &str) {
+    let result: u32 = input
+        .lines()
+        .map(|line| {
+            let moves: Vec<Move> = line
+                .split(" ")
+                .map(|ch| ch.parse::<Move>().unwrap())
+                .collect();
+            match moves[0].partial_cmp(&moves[1]) {
+                Some(Ordering::Equal) => 3 + moves[1].score(),
+                Some(Ordering::Less) => 6 + moves[1].score(),
+                Some(Ordering::Greater) => 0 + moves[1].score(),
+                None => panic!("Invalid move!!"),
+            }
+        })
+        .sum();
+    println!("Part 1: {}", result);
+}
+
+pub fn solve_part2(input: &str) {
+    let result = input
+        .lines()
+        .map(|line| {
+            let moves = line.split(" ").collect::<Vec<&str>>();
+            let opponent = moves[0].parse::<Move>().unwrap();
+            match moves[1] {
+                "X" => {
+                    // Case: Lose
+                    let mine = match opponent {
+                        Move::Rock => Move::Scissors,
+                        Move::Paper => Move::Rock,
+                        Move::Scissors => Move::Paper,
+                    };
+                    0 + mine.score()
+                }
+                // Case: Draw
+                "Y" => 3 + opponent.score(),
+
+                // Case: Win
+                "Z" => {
+                    let mine = match opponent {
+                        Move::Rock => Move::Paper,
+                        Move::Paper => Move::Scissors,
+                        Move::Scissors => Move::Rock,
+                    };
+                    6 + mine.score()
+                }
+                &_ => panic!("Invalid move!!"),
+            }
+        })
+        .sum::<u32>();
+
+    println!("Part 2: {}", result);
+}
