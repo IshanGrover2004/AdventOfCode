@@ -7,6 +7,7 @@ My Advent of Code solutions in rust 🦀
 - [Day 1](./AoC_2022/day_1): Calorie Counting
 - [Day 2](./AoC_2022/day_2): Rock Paper Scissor
 - [Day 3](./AoC_2022/day_3): Rucksack Reorganization
+- [Day 4](./AoC_2022/day_4): Camp Cleanup
 
 Feel free to explore each day's solution by clicking on the links above.
 
