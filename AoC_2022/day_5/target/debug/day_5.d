@@ -1,0 +1,1 @@
+/home/tan/Documents/Projects/AdventOfCode/AoC_2022/day_5/target/debug/day_5: /home/tan/Documents/Projects/AdventOfCode/AoC_2022/day_5/src/input.txt /home/tan/Documents/Projects/AdventOfCode/AoC_2022/day_5/src/lib.rs /home/tan/Documents/Projects/AdventOfCode/AoC_2022/day_5/src/main.rs
