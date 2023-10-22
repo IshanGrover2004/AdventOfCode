@@ -1,7 +1,8 @@
-use day_5::part1;
+use day_5::{solve_part1, solve_part2};
 
 fn main() {
     let input = include_str!("input.txt");
 
-    dbg!(part1::solve(&input));
+    dbg!(solve_part1(&input));
+    dbg!(solve_part2(&input));
 }
