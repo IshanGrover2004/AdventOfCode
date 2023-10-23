@@ -10,6 +10,7 @@ My Advent of Code solutions in rust 🦀
 - [Day 4](./AoC_2022/day_4): Camp Cleanup
 - [Day 5](./AoC_2022/day_5): Supply Stacks
 - [Day 6](./AoC_2022/day_6): Tuning Trouble
+
 Feel free to explore each day's solution by clicking on the links above.
 
 ## Contributing
