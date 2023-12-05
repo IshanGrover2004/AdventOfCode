@@ -43,19 +43,6 @@ pub fn solve_part1(input: &str) -> u32 {
     result.into_iter().sum()
 }
 
-// pub fn winning_numbers(&self) -> usize {
-//     let mut cards: Vec<_> = vec![1; self.deck.len()];
-//
-//     for (idx, matching) in self.deck.iter().map(ScratchCard::winning_count).enumerate() {
-//         let [amount, next_cards @ ..] = &mut cards[idx..=(idx + matching)] else {
-//             unreachable!()
-//         };
-//         next_cards.iter_mut().for_each(|c| *c += *amount);
-//     }
-//
-//     cards.into_iter().sum()
-// }
-
 pub fn matching_numbers(winning_numbers: Vec<u8>, numbers: Vec<u8>) -> usize {
     numbers
         .iter()
